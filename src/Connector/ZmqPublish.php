@@ -1,10 +1,12 @@
 <?php
 
-namespace Pelim\LaravelZmq\Connector;
+namespace Bgustyp\LaravelZmq\Connector;
+
+use Illuminate\Support\Facades\Config;
 
 /**
- * Class ZmqConnector
- * @package Pelim\LaravelZmq\Connector
+ * Class ZmqPublish
+ * @package Bgustyp\LaravelZmq\Connector
  */
 class ZmqPublish extends ZmqConnector
 {
@@ -24,7 +26,7 @@ class ZmqPublish extends ZmqConnector
     public function connect()
     {
         $context = new \ZMQContext();
-        $socket_method = \Config::get(sprintf('zmq.connections.%s.method', $this->connection), \ZMQ::SOCKET_PUB);
+        $socket_method = Config::get(sprintf('zmq.connections.%s.method', $this->connection), \ZMQ::SOCKET_PUB);
         $socket = $context->getSocket($socket_method);
         $socket->connect($this->dsn());
 

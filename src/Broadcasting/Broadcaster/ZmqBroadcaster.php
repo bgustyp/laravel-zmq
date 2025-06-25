@@ -1,17 +1,17 @@
 <?php
 
-namespace Pelim\LaravelZmq\Broadcasting\Broadcaster;
+namespace Bgustyp\LaravelZmq\Broadcasting\Broadcaster;
 
-use Pelim\LaravelZmq\Zmq;
+use Bgustyp\LaravelZmq\Zmq;
 use Illuminate\Http\Request;
-use Pelim\LaravelZmq\Connector\ZmqConnector;
+use Bgustyp\LaravelZmq\Connector\ZmqConnector;
 use Illuminate\Broadcasting\Broadcasters\Broadcaster;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Illuminate\Support\Str;
 
 /**
  * Class ZmqBroadcaster
- * @package Pelim\LaravelZmq\Broadcasting\Broadcaster
+ * @package Bgustyp\LaravelZmq\Broadcasting\Broadcaster
  */
 class ZmqBroadcaster extends Broadcaster
 {

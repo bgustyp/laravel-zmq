@@ -1,15 +1,17 @@
 <?php
 
-namespace Pelim\LaravelZmq\Connector;
+namespace Bgustyp\LaravelZmq\Connector;
+
+use Illuminate\Support\Facades\Config;
 
 /**
- * Class ZmqConnector
- * @package Pelim\LaravelZmq\Connector
+ * Class ZmqSubscribe
+ * @package Bgustyp\LaravelZmq\Connector
  */
 class ZmqSubscribe extends ZmqConnector
 {
     /**
-     * ZmqPublish constructor.
+     * ZmqSubscribe constructor.
      * @param string $connection
      */
     public function __construct($connection = 'subscribe')
@@ -25,7 +27,7 @@ class ZmqSubscribe extends ZmqConnector
     public function connect()
     {
         $context = new \ZMQContext();
-        $socket_method = \Config::get(sprintf('zmq.connections.%s.method', $this->connection), \ZMQ::SOCKET_SUB);
+        $socket_method = Config::get(sprintf('zmq.connections.%s.method', $this->connection), \ZMQ::SOCKET_SUB);
         $socket  = $context->getSocket($socket_method);
         $socket->bind($this->dsn());
 

@@ -1,10 +1,12 @@
 <?php
 
-namespace Pelim\LaravelZmq\Connector;
+namespace Bgustyp\LaravelZmq\Connector;
+
+use Illuminate\Support\Facades\Config;
 
 /**
  * Class ZmqConnector
- * @package Pelim\LaravelZmq\Connector
+ * @package Bgustyp\LaravelZmq\Connector
  */
 abstract class ZmqConnector
 {
@@ -22,6 +24,6 @@ abstract class ZmqConnector
 
     protected function dsn()
     {
-        return \Config::get(sprintf('zmq.connections.%s.dsn', $this->connection), 'tcp://127.0.0.1:5555');
+        return Config::get(sprintf('zmq.connections.%s.dsn', $this->connection), 'tcp://127.0.0.1:5555');
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Pelim\LaravelZmq;
+namespace Bgustyp\LaravelZmq;
 
 /**
  * Class Zmq
- * @package Pelim\LaravelZmq
+ * @package Bgustyp\LaravelZmq
  */
 class Zmq
 {
@@ -102,7 +102,9 @@ class Zmq
                 ]);
             }            
 
-            $connection->send($channel, \ZMQ::MODE_SNDMORE)->send($payload);
+            //$connection->send($channel, \ZMQ::MODE_SNDMORE)->send($payload);
         }
+
+        $connection->send($payload);
     }
 }
