@@ -10,7 +10,8 @@ use Bgustyp\LaravelZmq\Broadcasting\ZmqBroadcaster;
 use Bgustyp\LaravelZmq\Console\{
     ZmqTestCommand,
     ZmqServerCommand,
-    ZmqMonitorCommand
+    ZmqMonitorCommand,
+    ZmqVersionCommand
 };
 
 class ZmqServiceProvider extends ServiceProvider
