@@ -1,8 +1,14 @@
 {
     "name": "bgustyp/laravel-zmq",
-    "description": "A ZeroMQ broadcast driver for Laravel 5-12 with DEALER socket support",
+    "description": "A simple ZeroMQ broadcast driver for Laravel",
+    "type": "library",
     "license": "MIT",
-    "keywords": ["laravel", "zmq", "zeromq", "broadcasting", "dealer", "router", "pubsub"],
+    "keywords": [
+        "laravel",
+        "zeromq",
+        "zmq",
+        "broadcasting"
+    ],
     "authors": [
         {
             "name": "pelim",
@@ -14,24 +20,38 @@
         }
     ],
     "require": {
-        "ext-zmq": "*",
         "php": "^8.1",
-        "illuminate/broadcasting": "^5.5|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
-        "illuminate/contracts": "^5.5|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
-        "illuminate/http": "^5.5|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0"
+        "illuminate/support": "^9.0|^10.0|^11.0|^12.0",
+        "illuminate/broadcasting": "^9.0|^10.0|^11.0|^12.0",
+        "illuminate/console": "^9.0|^10.0|^11.0|^12.0",
+        "ext-zmq": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0|^11.0",
+        "orchestra/testbench": "^7.0|^8.0|^9.0",
+        "mockery/mockery": "^1.4"
     },
     "autoload": {
         "psr-4": {
             "Bgustyp\\LaravelZmq\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Bgustyp\\LaravelZmq\\Tests\\": "tests/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
                 "Bgustyp\\LaravelZmq\\ZmqServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "ZMQ": "Bgustyp\\LaravelZmq\\Facades\\ZmqManager"
+            }
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": false
+    "scripts": {
+        "test": "phpunit"
+    }
 }

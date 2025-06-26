@@ -1,41 +1,44 @@
 <?php
 
 return [
-    'default' => 'publish',
+    'default' => env('ZMQ_CONNECTION', 'publish'),
 
     'connections' => [
-
         'publish' => [
-            'dsn'       => 'tcp://127.0.0.1:5555',
-            'method'    => \ZMQ::SOCKET_PUB,
+            'dsn' => env('ZMQ_PUB_DSN', 'tcp://127.0.0.1:5555'),
+            'method' => \ZMQ::SOCKET_PUB,
+            'action' => 'bind',
+            'linger' => 1000,
+            'hwm' => 1000,
         ],
 
         'subscribe' => [
-            'dsn'    => 'tcp://0.0.0.0:5555',
-            'method'    => \ZMQ::SOCKET_SUB,
+            'dsn' => env('ZMQ_SUB_DSN', 'tcp://127.0.0.1:5555'),
+            'method' => \ZMQ::SOCKET_SUB,
+            'action' => 'connect',
+            'linger' => 0,
         ],
 
         'dealer' => [
-            'dsn'       => 'tcp://127.0.0.1:5556',
-            'method'    => \ZMQ::SOCKET_DEALER,
-            'action'    => 'connect', // 'connect' or 'bind'
-            'identity'  => null, // Set identity for dealer socket
-            'linger'    => 0, // Socket linger value
+            'dsn' => env('ZMQ_DEALER_DSN', 'tcp://127.0.0.1:5556'),
+            'method' => \ZMQ::SOCKET_DEALER,
+            'action' => 'connect',
+            'identity' => env('ZMQ_DEALER_IDENTITY'),
+            'linger' => 1000,
         ],
 
         'router' => [
-            'dsn'       => 'tcp://0.0.0.0:5556',
-            'method'    => \ZMQ::SOCKET_ROUTER,
-            'action'    => 'bind', // 'connect' or 'bind'
-            'linger'    => 0, // Socket linger value
+            'dsn' => env('ZMQ_ROUTER_DSN', 'tcp://0.0.0.0:5556'),
+            'method' => \ZMQ::SOCKET_ROUTER,
+            'action' => 'bind',
+            'linger' => 1000,
         ],
     ],
 
-    'debug_logs' => true, // enable this to log all published messages to debug channel
+    'debug_logs' => env('ZMQ_DEBUG_LOGS', false),
 
-    // Additional ZMQ context options
     'context' => [
-        'io_threads' => 1, // Number of I/O threads
-        'max_sockets' => 1024, // Maximum number of sockets
+        'io_threads' => env('ZMQ_IO_THREADS', 1),
+        'max_sockets' => env('ZMQ_MAX_SOCKETS', 1024),
     ],
 ];
