@@ -53,6 +53,7 @@ class ZmqServiceProvider extends ServiceProvider
                 ZmqTestCommand::class,
                 ZmqServerCommand::class,
                 ZmqMonitorCommand::class,
+                ZmqVersionCommand::class,
             ]);
         }
     }
